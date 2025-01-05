@@ -1,7 +1,5 @@
 # Budget-Beam
 
-![Budget-Beam Logo](https://via.placeholder.com/150)
-
 Live: [Budget-Beam](https://budget-beam-green.vercel.app/sign-in?redirect_url=https%3A%2F%2Fbudget-beam-green.vercel.app%2F)
 
 Budget-Beam is a comprehensive financial management application designed to help users track their budgets and expenses efficiently. With intuitive features for creating, editing, and deleting budget items, users can easily manage their financial activities. The application includes detailed reporting capabilities, allowing users to generate and download financial reports in PDF format.

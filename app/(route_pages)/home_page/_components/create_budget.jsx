@@ -123,29 +123,16 @@ function CreateBudget({ onBudgetCreated }) {
         const handleResize = () => {
             setOpenEmojiPicker(false);
             setWindowWidth(window.innerWidth);
-            setIsDialogOpen(false);
-        };
-
-        const handleKeyboardShow = () => {
-            setIsDialogOpen(true);
-        };
-
-        const handleKeyboardHide = () => {
-            setIsDialogOpen(false);
         };
 
         if (typeof window !== "undefined") {
             setWindowWidth(window.innerWidth);
             window.addEventListener("resize", handleResize);
-            window.addEventListener("keyboardWillShow", handleKeyboardShow);
-            window.addEventListener("keyboardWillHide", handleKeyboardHide);
         }
 
         return () => {
             if (typeof window !== "undefined") {
                 window.removeEventListener("resize", handleResize);
-                window.removeEventListener("keyboardWillShow", handleKeyboardShow);
-                window.removeEventListener("keyboardWillHide", handleKeyboardHide);
             }
         };
     }, []);
@@ -161,7 +148,7 @@ function CreateBudget({ onBudgetCreated }) {
             if (emojiPickerRef.current && !emojiPickerRef.current.contains(event.target)) {
                 setOpenEmojiPicker(false);
             }
-            if (dialogRef.current && !dialogRef.current.contains(event.target) && !isKeyboardOpen()) {
+            if (dialogRef.current && !dialogRef.current.contains(event.target)) {
                 setIsDialogOpen(false);
                 resetForm();
             }
@@ -182,10 +169,6 @@ function CreateBudget({ onBudgetCreated }) {
             document.removeEventListener("keydown", handleKeyPress);
         };
     }, [isDialogOpen, resetForm, onCreateBudget]);
-
-    const isKeyboardOpen = () => {
-        return window.innerHeight < window.outerHeight;
-    };
 
     return (
         <div>
@@ -208,7 +191,7 @@ function CreateBudget({ onBudgetCreated }) {
                         <div className="text-gray-600 mt-2 text-center">Create New Budget</div>
                     </div>
                 </DialogTrigger>
-                <DialogContent ref={dialogRef} className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-md mx-auto p-6 md:p-8 lg:p-10 dialog-content">
+                <DialogContent ref={dialogRef} className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-md mx-auto p-6 md:p-8 lg:p-10">
                     <DialogHeader>
                         <DialogTitle className="text-2xl font-semibold text-gray-800">
                             Create New Budget
@@ -302,17 +285,6 @@ function CreateBudget({ onBudgetCreated }) {
                 }
                 .emoji-button:hover {
                     border-color: black
-                }
-                .dialog-content {
-                    position: fixed;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    background: white;
-                    padding: 20px;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    z-index: 50;
                 }
             `}</style>
         </div>

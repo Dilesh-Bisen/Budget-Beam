@@ -30,6 +30,7 @@ function CreateBudget({ onBudgetCreated }) {
     const { user } = useUser();
     const emojiPickerRef = useRef(null);
     const dialogRef = useRef(null);
+    const nameInputRef = useRef(null);
 
     const resetForm = useCallback(() => {
         setName("");
@@ -141,6 +142,10 @@ function CreateBudget({ onBudgetCreated }) {
     useEffect(() => {
         if (isDialogOpen) {
             setOpenEmojiPicker(false);
+            // Focus the name input field when the dialog opens
+            if (nameInputRef.current) {
+                nameInputRef.current.focus();
+            }
         }
     }, [isDialogOpen]);
 
@@ -228,10 +233,12 @@ function CreateBudget({ onBudgetCreated }) {
                                         Budget Name
                                     </label>
                                     <Input
+                                        ref={nameInputRef}
                                         placeholder="e.g. Shopping"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         className="text-black border-2 border-gray-500 rounded-md p-2"
+                                        autoFocus
                                     />
                                 </div>
                                 <div className="mt-4">

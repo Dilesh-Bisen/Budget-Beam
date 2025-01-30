@@ -21,7 +21,7 @@ function Banner() {
                         <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                             <a
                                 className="rounded-lg bg-blue-600 px-6 py-2 md:px-8 md:py-3 text-sm md:text-base font-medium text-white shadow-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                                href="#"
+                                href="/home_page"
                             >
                                 Get Started
                             </a>

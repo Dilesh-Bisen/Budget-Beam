@@ -123,6 +123,7 @@ function CreateBudget({ onBudgetCreated }) {
         const handleResize = () => {
             setOpenEmojiPicker(false);
             setWindowWidth(window.innerWidth);
+            setIsDialogOpen(false);
         };
 
         if (typeof window !== "undefined") {

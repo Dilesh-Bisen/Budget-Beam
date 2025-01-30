@@ -123,7 +123,7 @@ function CreateBudget({ onBudgetCreated }) {
         const handleResize = () => {
             setOpenEmojiPicker(false);
             setWindowWidth(window.innerWidth);
-            setIsDialogOpen(false);
+            // setIsDialogOpen(false);
         };
 
         if (typeof window !== "undefined") {
@@ -192,7 +192,15 @@ function CreateBudget({ onBudgetCreated }) {
                         <div className="text-gray-600 mt-2 text-center">Create New Budget</div>
                     </div>
                 </DialogTrigger>
-                <DialogContent ref={dialogRef} className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-md mx-auto p-6 md:p-8 lg:p-10">
+                <DialogContent ref={dialogRef} className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-md mx-auto p-6 md:p-8 lg:p-10"
+                    onInteractOutside={(e) => {
+                        const validTargets = ['INPUT', 'TEXTAREA', 'BUTTON', 'DIV'];
+                        if (!validTargets.includes(e.target.tagName)) {
+                            resetForm();
+                            setIsDialogOpen(false);
+                        }
+                    }}
+                    onEscapeKeyDown={() => setIsDialogOpen(false)}>
                     <DialogHeader>
                         <DialogTitle className="text-2xl font-semibold text-gray-800">
                             Create New Budget

@@ -216,18 +216,17 @@ function CreateBudget({ onBudgetCreated }) {
                                     {emojiIcon}
                                 </Button>
                                 {openEmojiPicker && (
-                                    <div
+                                   <div 
                                         ref={emojiPickerRef}
-                                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 rounded-md border-2 border-black"
+                                        className="absolute top-[20%] left-1/2 transform -translate-x-1/2 z-10 rounded-md border-2 border-black"
                                     >
-                                        <div>
-                                            <EmojiPicker
-                                                onEmojiClick={(e) => {
-                                                    setEmojiIcon(e.emoji);
-                                                    setOpenEmojiPicker(false);
-                                                }}
-                                            />
-                                        </div>
+                                        <EmojiPicker
+                                            onEmojiClick={(e) => {
+                                                setEmojiIcon(e.emoji);
+                                                setOpenEmojiPicker(false);
+                                            }}
+                                            width={windowWidth > 500 ? 350 : 250}
+                                        />
                                     </div>
                                 )}
 

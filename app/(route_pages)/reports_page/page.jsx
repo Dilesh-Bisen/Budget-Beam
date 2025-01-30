@@ -82,7 +82,7 @@ function Reports() {
             startY: 30
         });
 
-        const expenseTableColumns = ["Budget Name", "Amount", "Tags", "Notes"];
+        const expenseTableColumns = ["Expense Name", "Amount", "Tags", "Notes"];
         const expenseTableRows = expenses.map(item => [
             item.budget_name,
             item.amount,

@@ -123,13 +123,14 @@ function CreateBudget({ onBudgetCreated }) {
         const handleResize = () => {
             setOpenEmojiPicker(false);
             setWindowWidth(window.innerWidth);
+            // setIsDialogOpen(false);
         };
-    
+
         if (typeof window !== "undefined") {
             setWindowWidth(window.innerWidth);
             window.addEventListener("resize", handleResize);
         }
-    
+
         return () => {
             if (typeof window !== "undefined") {
                 window.removeEventListener("resize", handleResize);
@@ -192,14 +193,15 @@ function CreateBudget({ onBudgetCreated }) {
                     </div>
                 </DialogTrigger>
                 <DialogContent ref={dialogRef} 
-                    className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-md mx-auto p-6 md:p-8 lg:p-10" 
+                    className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-md mx-auto p-6 md:p-8 lg:p-10"
                     onInteractOutside={(e) => {
-                        const isKeyboard = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA';
-                        if (!isKeyboard) {
+                        const validTargets = ['INPUT', 'TEXTAREA', 'BUTTON', 'DIV'];
+                        if (!validTargets.includes(e.target.tagName)) {
                             resetForm();
                             setIsDialogOpen(false);
                         }
-                    }}>
+                    }}
+                    onEscapeKeyDown={() => setIsDialogOpen(false)}>
                     <DialogHeader>
                         <DialogTitle className="text-2xl font-semibold text-gray-800">
                             Create New Budget
@@ -215,18 +217,17 @@ function CreateBudget({ onBudgetCreated }) {
                                     {emojiIcon}
                                 </Button>
                                 {openEmojiPicker && (
-                                    <div
+                                    <div 
                                         ref={emojiPickerRef}
-                                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 rounded-md border-2 border-black"
+                                        className="absolute top-[20%] left-1/2 transform -translate-x-1/2 z-10 rounded-md border-2 border-black"
                                     >
-                                        <div>
-                                            <EmojiPicker
-                                                onEmojiClick={(e) => {
-                                                    setEmojiIcon(e.emoji);
-                                                    setOpenEmojiPicker(false);
-                                                }}
-                                            />
-                                        </div>
+                                        <EmojiPicker
+                                            onEmojiClick={(e) => {
+                                                setEmojiIcon(e.emoji);
+                                                setOpenEmojiPicker(false);
+                                            }}
+                                            width={windowWidth > 500 ? 350 : 250}
+                                        />
                                     </div>
                                 )}
 

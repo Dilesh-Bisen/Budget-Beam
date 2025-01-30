@@ -1,8 +1,15 @@
 "use client";
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 function Banner() {
+    const router = useRouter();
+
+    const handleGetStarted = () => {
+        router.push('/home_page');
+    };
+
     return (
         <div className='-mb-10'>
             <section className="bg-gradient-to-b from-blue-900 to-gray-900 text-white">
@@ -19,12 +26,12 @@ function Banner() {
                         </p>
 
                         <div className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                            <a
+                            <button
                                 className="rounded-lg bg-blue-600 px-6 py-2 md:px-8 md:py-3 text-sm md:text-base font-medium text-white shadow-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                                href="/home_page"
+                                onClick={handleGetStarted}
                             >
                                 Get Started
-                            </a>
+                            </button>
                             <a
                                 className="rounded-lg border border-gray-600 px-6 py-2 md:px-8 md:py-3 text-sm md:text-base font-medium text-gray-300 hover:bg-gray-800 focus:ring-2 focus:ring-gray-400 focus:outline-none"
                                 href="#"
